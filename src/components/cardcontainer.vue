@@ -1,24 +1,47 @@
 <script>
 
-  import card from "./partials/card.vue";
+import { store } from '../components/data/store';
+import CharacterCard from './partials/CharacterCard.vue';
 
-  export default {
-    components: {
-      card
-    },
+export default {
+  name: 'CardsContainer',
+  components:{
+    CharacterCard
+  },
+  data(){
+    return{
+      store
+    }
+  },
+  mounted(){
+    console.log(store.charctersList);
+  }
+  
 }
 
 </script>
 
+
 <template>
 
-<h1>holi3</h1>
-<card/>
+  <div class="container my-5">
+    <div class="row">
+      <CharacterCard
+        v-for="character in store.charctersList"
+        :key="character.id"
+        :name="character.name"
+        :status="character.status"
+        :species="character.species"
+        :image="character.image"
+      />
+    </div>
+  </div>
 
+  
 </template>
 
-<style lang="scss" scoop>
 
-  @use "../scss/partials/cardcontainer.scss";
+
+<style lang="scss" scoped>
 
 </style>
